@@ -18,48 +18,55 @@ main {
 
 
 #calculator-body {
-    width: 90vw;
-    border: 1px solid black;
+    width: auto;
+    height: auto;
+    border: 1px solid lightgrey;
+    border-radius: 6px;
+    box-shadow: 10px 10px 10px lightgrey;
+    padding: 1rem;
 }
 
 #display {
-    border: 1px solid black;
+    border: 1px solid lightgrey;
+    border-radius: 6px;
+    box-shadow: 3px 3px 3px lightgrey;
     height: 4rem;
-    display: flex;
-    flex-direction: column;
     padding: 1rem;
     margin: 1rem;
 }
 
 #keypad-container {
-    border: 1px solid black;
     margin: 1rem;
-
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
 }
 
 .button {
-    flex: 1 0 21%;
-    padding-bottom: 15%;
-    border: 1px solid black;
-
-    text-align: center;
+    padding: 1rem;
     font-size: 2rem;
+    border-radius: 6px;
+    box-shadow: 5px 5px 5px lightgrey;
+    border: 0;
+}
+
+#zero-button {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    width: auto;
 }
 
 @media only screen and (max-width: 600px) {
     #calculator-body {
-        max-width: 400px;
-        min-width: 300px;
+        /* max-width: 400px; */
+        /* min-width: 300px; */
     }
 }
 
 @media only screen and (min-width: 600px) {
     #calculator-body {
-        max-width: 400px;
-        min-width: 300px;
+        /* max-width: 400px; */
+        /* min-width: 300px; */
     }
 }
 
