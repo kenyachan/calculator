@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/calculator.js" defer></script>
 </head>
 <body>
     <header>
@@ -13,27 +14,30 @@
     </header>
     <main>
         <div id="calculator-body">
-            <div id="display"></div>
+            <div id="display-container">
+                <!-- <p id="display-history"></p> -->
+                <input id="display" value="0" disabled>
+            </div>
             <div id="keypad-container">
                 <button id="ac-button" class="button clear-button">AC</button>
-                <button id="ce-button" class="button clear-button">CE</button>
+                <button id="c-button" class="button clear-button">C</button>
                 <button id="percentage-button" class="button operator-button">%</button>
-                <button id="divide-button" class="button operator-button">&divide;</button>
+                <button id="divide-button" class="button operator-button" value="divide">&divide;</button>
                 <button id="seven-button" class="button number-button">7</button>
                 <button id="eight-button" class="button number-button">8</button>
                 <button id="nine-button" class="button number-button">9</button>
-                <button id="multiply-button" class="button operator-button">&times;</button>
+                <button id="multiply-button" class="button operator-button" value="multiply">&times;</button>
                 <button id="four-button" class="button number-button">4</button>
                 <button id="five-button" class="button number-button">5</button>
                 <button id="six-button" class="button number-button">6</button>
-                <button id="subtract-button" class="button operator-button">-</button>
-                <button id="one-button" class="button operator-button">1</button>
+                <button id="subtract-button" class="button operator-button" value="subtract">-</button>
+                <button id="one-button" class="button number-button">1</button>
                 <button id="two-button" class="button number-button">2</button>
                 <button id="three-button" class="button number-button">3</button>
-                <button id="addition-button" class="button operator-button">+</button>
+                <button id="addition-button" class="button operator-button" value="add">+</button>
                 <button id="zero-button" class="button number-button">0</button>
                 <button id="decimal-button" class="button symbol-button">.</button>
-                <button id="operate-button" class="button operator-button">=</button>
+                <button id="evaluate-button" class="button evaluate-button" value="equals">=</button>
             </div>
         </div>
     </main>
