@@ -41,15 +41,10 @@ function appendDigit(button) {
 }
 
 function addDecimal() {        
-    if (buffer === null)  {
-        buffer = '0.';
-        updateDisplay(buffer);
-    }
-    
-    if (buffer.includes('.')) return;
-    
-    buffer += '.';
+    if (buffer !== null && buffer.includes('.')) return;
 
+    buffer = buffer !== null ? buffer += '.' : buffer = '0.';
+    
     updateDisplay(buffer);
 }
 
