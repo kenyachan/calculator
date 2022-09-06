@@ -56,14 +56,15 @@ function updateDisplay(output) {
 }
 
 function clear() {
-    if (buffer === null) {
+    if (buffer !== null) {
+        buffer = null;
+    } else {
+        buffer = null;
         register = null;
         op = null;    
     }
-    
-    buffer = null;
-    clearButton.textContent = 'AC';
 
+    clearButton.textContent = 'AC';
     updateDisplay('0');
 }
 
