@@ -7,9 +7,10 @@ let opCode = null;
 let numberButtons = document.querySelectorAll('.number-button');
 let operatorButtons = document.querySelectorAll('.operator-button');
 let clearButton = document.querySelector('#c-button');
-let allClearButton = document.querySelector('#ac-button');
+// let allClearButton = document.querySelector('#ac-button');
 let evaluateButton = document.querySelector('#evaluate-button')
 let decimalButton = document.querySelector('#decimal-button');
+let negateButton = document.querySelector('#negate-button');
 
 initiateCalc();
 
@@ -19,9 +20,10 @@ function initiateCalc() {
     });
     operatorButtons.forEach(button => button.addEventListener('click', setOpCode));
     clearButton.addEventListener('click', clear);
-    allClearButton.addEventListener('click', clearAll);
+    // allClearButton.addEventListener('click', clearAll);
     evaluateButton.addEventListener('click', evaluate);
     decimalButton.addEventListener('click', addDecimal);
+    negateButton.addEventListener('click', negate);
 }
 
 function appendDigit(button) {
@@ -115,5 +117,15 @@ function evaluate() {
     buffer = null;
 
     updateDisplay(result);
+    }
+}
+
+function negate() {
+    if (buffer === null) {
+        register = Number(register) * -1;
+        updateDisplay(register);
+    } else {
+        buffer = Number(buffer) * -1;
+        updateDisplay(buffer);
     }
 }
