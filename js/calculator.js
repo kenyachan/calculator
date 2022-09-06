@@ -116,6 +116,15 @@ function divide(numerator, denominator) {
 }
 
 function evaluate() {
+    if (opCode === null) {
+        if (buffer === null) {
+            updateDisplay('0');
+        } else {
+            updateDisplay(buffer);
+        }
+        return;
+    }
+
     if (buffer !== null) {
         let result = operate(opCode, register, buffer);
 
