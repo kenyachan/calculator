@@ -11,20 +11,18 @@ let allClearButton = document.querySelector('#ac-button');
 let evaluateButton = document.querySelector('#evaluate-button')
 let decimalButton = document.querySelector('#decimal-button');
 
-numberButtons.forEach(button => {
-    button.addEventListener('click', appendDigit);
-});
+initiateCalc();
 
-operatorButtons.forEach(button => {
-    button.addEventListener('click', setOpCode);
-});
-
-clearButton.addEventListener('click', clear);
-allClearButton.addEventListener('click', clearAll);
-
-evaluateButton.addEventListener('click', evaluate);
-
-decimalButton.addEventListener('click', addDecimal);
+function initiateCalc() {
+    numberButtons.forEach(button => {
+        button.addEventListener('click', appendDigit);
+    });
+    operatorButtons.forEach(button => button.addEventListener('click', setOpCode));
+    clearButton.addEventListener('click', clear);
+    allClearButton.addEventListener('click', clearAll);
+    evaluateButton.addEventListener('click', evaluate);
+    decimalButton.addEventListener('click', addDecimal);
+}
 
 function appendDigit(button) {
     if (buffer === null) {
