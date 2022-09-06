@@ -9,6 +9,7 @@ let operatorButtons = document.querySelectorAll('.operator-button');
 let clearButton = document.querySelector('#c-button');
 let allClearButton = document.querySelector('#ac-button');
 let evaluateButton = document.querySelector('#evaluate-button')
+let decimalButton = document.querySelector('#decimal-button');
 
 numberButtons.forEach(button => {
     button.addEventListener('click', appendDigit);
@@ -23,12 +24,23 @@ allClearButton.addEventListener('click', clearAll);
 
 evaluateButton.addEventListener('click', evaluate);
 
+decimalButton.addEventListener('click', addDecimal);
+
 function appendDigit(button) {
     if (buffer === null) {
         buffer = button.target.textContent;
     } else {
         buffer = `${buffer}${button.target.textContent}`;
     }
+
+    updateDisplay(buffer);
+}
+
+function addDecimal() {    
+    if (buffer === null) buffer = '0.';
+    if (buffer.includes('.')) return;
+    
+    buffer += '.';
 
     updateDisplay(buffer);
 }
@@ -53,29 +65,15 @@ function clearAll() {
 }
 
 function setOpCode(button) {
-    // if (button.target.value === 'equals') {
-    //     register = operate(op, register, buffer);
-    //     buffer = null;
-  
-    //     updateDisplay(register);
-
-    //     return;
-    // }
-    
-    op = button.target.value;
-
-    if (register === null) {
-        register = buffer;
+    if (buffer !== null) {
+        register = register !== null ? operate(opCode, register, buffer) : buffer;    
         buffer = null;
-    } else {
-        register = operate(op, register, buffer);
-        buffer = null;
-
-        updateDisplay(register);
     }
-
+    
+    opCode = button.target.value;
+    
+    updateDisplay(register);
 }
-
 
 
 function operate(operator, firstNumber, secondNumber) {
@@ -95,30 +93,29 @@ function operate(operator, firstNumber, secondNumber) {
     }
 }
 
-
 function add(firstNumber, secondNumber) {
-    return parseInt(firstNumber) + parseInt(secondNumber);
+    return Number(firstNumber) + Number(secondNumber);
 }
 
 function subtract(firstNumber, secondNumber) {
-    return parseInt(firstNumber) - parseInt(secondNumber);
+    return Number(firstNumber) - Number(secondNumber);
 }
 
 function multiply(firstNumber, secondNumber) {
-    return parseInt(firstNumber) * parseInt(secondNumber);
+    return Number(firstNumber) * Number(secondNumber);
 }
 
 function divide(numerator, denominator) {
-    return parseInt(numerator) / parseInt(denominator);
+    return Number(numerator) / Number(denominator);
 }
 
 function evaluate() {
-    if (op === null)
+    if (buffer !== null) {
+        let result = operate(opCode, register, buffer);
 
-    if (register === null) {
-        register = buffer;
-        buffer = operate(op, buffer, buffer);
-    } else {
-        // opCodeEvaluate
+    register = result;
+    buffer = null;
+
+    updateDisplay(result);
     }
 }
