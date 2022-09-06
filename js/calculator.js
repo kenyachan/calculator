@@ -10,6 +10,7 @@ let clearButton = document.querySelector('#c-button');
 let evaluateButton = document.querySelector('#evaluate-button')
 let decimalButton = document.querySelector('#decimal-button');
 let negateButton = document.querySelector('#negate-button');
+let percentageButton = document.querySelector('#percentage-button');
 
 initiateCalc();
 
@@ -24,6 +25,7 @@ function initiateCalc() {
     decimalButton.addEventListener('click', addDecimal);
     decimalButton.addEventListener('click', changeClearButton);
     negateButton.addEventListener('click', negate);
+    percentageButton.addEventListener('click', percentage);
 }
 
 function changeClearButton() {
@@ -138,4 +140,15 @@ function negate() {
         buffer = Number(buffer) * -1;
         updateDisplay(buffer);
     }
+}
+
+function percentage() {
+    if (opCode !== null && buffer !== null) {
+        buffer = Number(buffer) * 0.01;
+        updateDisplay(buffer);
+    } else {
+        register = Number(register) * 0.01;
+        updateDisplay(register);
+    }
+    
 }
