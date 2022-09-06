@@ -123,12 +123,10 @@ function evaluate() {
     }
 
     if (buffer !== null) {
-        let result = operate(opCode, register, buffer);
-
-        register = result;
+        register = operate(opCode, register, buffer);
         buffer = null;
 
-        updateDisplay(result);
+        updateDisplay(register);
     }
 }
 
