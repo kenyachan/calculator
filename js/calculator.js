@@ -51,6 +51,11 @@ function updateDisplay(output) {
 }
 
 function clear() {
+    if (buffer === null) {
+        register = null;
+        op = null;    
+    }
+    
     buffer = null;
 
     updateDisplay('0');
