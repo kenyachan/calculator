@@ -40,8 +40,12 @@ function appendDigit(button) {
     updateDisplay(buffer);
 }
 
-function addDecimal() {    
-    if (buffer === null) buffer = '0.';
+function addDecimal() {        
+    if (buffer === null)  {
+        buffer = '0.';
+        updateDisplay(buffer);
+    }
+    
     if (buffer.includes('.')) return;
     
     buffer += '.';
