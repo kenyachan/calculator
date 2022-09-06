@@ -44,7 +44,7 @@ function addDecimal() {
     if (buffer !== null && buffer.includes('.')) return;
 
     buffer = buffer !== null ? buffer += '.' : buffer = '0.';
-    
+
     updateDisplay(buffer);
 }
 
@@ -123,10 +123,10 @@ function evaluate() {
     if (buffer !== null) {
         let result = operate(opCode, register, buffer);
 
-    register = result;
-    buffer = null;
+        register = result;
+        buffer = null;
 
-    updateDisplay(result);
+        updateDisplay(result);
     }
 }
 
