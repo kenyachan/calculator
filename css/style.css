@@ -19,6 +19,7 @@ body {
 
 header {
     background-color: whitesmoke;
+    color:#1F2937;
 }
 
 .page-title {
@@ -37,7 +38,7 @@ main {
 
 footer {
     background-color: #1F2937;
-    color: #e5e7eb;
+    color: whitesmoke;
     padding: 1rem;
 }
 
@@ -48,8 +49,8 @@ footer p {
 #calculator-body {
     width: auto;
     height: auto;
-    border: 1px solid lightgrey;
-    border-radius: 6px;
+    border: 3px solid lightgrey;
+    border-radius: 20px;
     box-shadow: 10px 10px 10px lightgrey;
     padding: 1rem;
 }
@@ -83,6 +84,8 @@ footer p {
 }
 
 .button {
+    background-color: grey;
+    color: whitesmoke;
     padding: 1rem;
     font-size: 2rem;
     border-radius: 6px;
@@ -90,10 +93,21 @@ footer p {
     border: 0;
 }
 
+.clear-button,
+.negate-button,
+.percent-button {
+    background-color: slategrey;
+}
+
 #zero-button {
     grid-column-start: 1;
     grid-column-end: span 2;
     width: auto;
+}
+
+.operator-button,
+.evaluate-button {
+    background-color: orange;
 }
 
 @media only screen and (max-width: 600px) {
