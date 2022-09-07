@@ -35,6 +35,15 @@ main {
     flex: 1 1 auto;
 }
 
+footer {
+    background-color: #1F2937;
+    color: #e5e7eb;
+    padding: 1rem;
+}
+
+footer p {
+    font-size: 1rem;
+}
 
 #calculator-body {
     width: auto;
