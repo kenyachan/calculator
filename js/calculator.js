@@ -69,8 +69,18 @@ function clear() {
 }
 
 function setOpCode(button) {
+    let result = operate(opCode, register, buffer);
+
+    if (typeof result !== 'number') {
+        register = null;
+        buffer = null;
+        opCode = null;
+        updateDisplay(result);
+        return;
+    }
+    
     if (buffer !== null) {
-        register = register !== null ? operate(opCode, register, buffer) : buffer;    
+        register = register !== null ? result : buffer;    
         buffer = null;
     }
     
@@ -93,7 +103,11 @@ function operate(operator, firstNumber, secondNumber) {
         case 'multiply':
             return multiply(firstNumber, secondNumber);
         case 'divide':
-            return divide(firstNumber, secondNumber);
+            if (secondNumber === '0'){
+                return "0ops! You divided by 0 you silly billy!";
+            } else {
+                return divide(firstNumber, secondNumber);
+            }
     }
 }
 
