@@ -23,6 +23,7 @@ header {
 
 .page-title {
     font-size: 3rem;
+    font-weight: bolder;
     text-align: center;
     margin: 1rem;
 }
