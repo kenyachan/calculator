@@ -9,6 +9,16 @@ body {
     min-height: 100vh;
 }
 
+header {
+    background-color: whitesmoke;
+}
+
+.page-title {
+    font-size: 3rem;
+    text-align: center;
+    margin: 1rem;
+}
+
 main {
     display: flex;
     align-items: center;
