@@ -118,33 +118,29 @@ function divide(numerator, denominator) {
 }
 
 function evaluate() {
-    if (buffer !== null && register === null) {
-        register = buffer;
-        buffer = null;
-        
-        updateDisplay(register);
-        
-        return;
-    }
-
     if ((buffer === null && register !== null) ||
         (buffer === null && register === null)) 
-            return;
+            return false;
 
     if (buffer !== null && register !== null) {
         if (opCode === 'divide' && Number(buffer) === 0) {
             clear();
             clear();
             updateDisplay("0ops! You divided by 0 you silly billy!");
-            return;
+            return false;
         }
 
         register = operate(opCode, register, buffer);
-        buffer = null;
-
-        updateDisplay(register);
-        return;
     }
+
+    if (buffer !== null && register === null) 
+        register = buffer;
+
+    buffer = null;
+        
+    updateDisplay(register);
+    return true;
+
 }
 
 function negate() {
