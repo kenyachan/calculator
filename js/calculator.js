@@ -4,22 +4,24 @@ let buffer = null;
 let register = null;
 let opCode = null;
 
-let numberButtons = document.querySelectorAll('.number-button');
-let operatorButtons = document.querySelectorAll('.operator-button');
-let clearButton = document.querySelector('#c-button');
-let evaluateButton = document.querySelector('#evaluate-button')
-let decimalButton = document.querySelector('#decimal-button');
-let negateButton = document.querySelector('#negate-button');
-let percentageButton = document.querySelector('#percentage-button');
+const numberButtons = document.querySelectorAll('.number-button');
+const operatorButtons = document.querySelectorAll('.operator-button');
+const clearButton = document.querySelector('#c-button');
+const evaluateButton = document.querySelector('#evaluate-button')
+const decimalButton = document.querySelector('#decimal-button');
+const negateButton = document.querySelector('#negate-button');
+const percentageButton = document.querySelector('#percentage-button');
 
 initiateCalc();
 
 function initiateCalc() {
     numberButtons.forEach(button => {
-        button.addEventListener('click', appendDigit);
+        button.addEventListener('click', () => appendDigit(button.textContent));
         button.addEventListener('click', changeClearButton);
     });
-    operatorButtons.forEach(button => button.addEventListener('click', setOpCode));
+    operatorButtons.forEach(button => {
+        button.addEventListener('click', () => setOpCode(button.value))
+    });
     clearButton.addEventListener('click', clear);
     evaluateButton.addEventListener('click', evaluate);
     decimalButton.addEventListener('click', addDecimal);
@@ -32,11 +34,11 @@ function changeClearButton() {
     clearButton.textContent = 'C';
 }
 
-function appendDigit(button) {
+function appendDigit(digit) {
     if (buffer === null) {
-        buffer = button.target.textContent;
+        buffer = digit;
     } else {
-        buffer = `${buffer}${button.target.textContent}`;
+        buffer += digit;
     }
 
     updateDisplay(buffer);
@@ -56,38 +58,32 @@ function updateDisplay(output) {
 }
 
 function clear() {
-    if (buffer !== null) {
-        buffer = null;
-    } else {
-        buffer = null;
+    if (buffer === null) {
         register = null;
-        op = null;    
+        opCode = null;
     }
+
+    buffer = null;
 
     clearButton.textContent = 'AC';
     updateDisplay('0');
 }
 
-function setOpCode(button) {
+function setOpCode(code) {
     if (register === null && buffer === null) return;
-
     if (register !== null && buffer !== null) evaluate();
-
     if (register === null && buffer !== null) {
         register = buffer;
         buffer = null;
     }
 
-    opCode = button.target.value;
-
-    return opCode;
+    opCode = code;
 }
 
 
 function operate(operator, firstNumber, secondNumber) {
-    if (!OPERATORS.includes(operator)) {
+    if (!OPERATORS.includes(operator))
         throw `Invalid operator: ${operator} is not a valid operator.`;
-    }
 
     switch (operator) {
         case 'add':
@@ -124,9 +120,10 @@ function evaluate() {
 
     if (buffer !== null && register !== null) {
         if (opCode === 'divide' && Number(buffer) === 0) {
-            clear();
-            clear();
-            updateDisplay("0ops! You divided by 0 you silly billy!");
+            alert("0ops! You tried to divide by 0 you silly billy!");
+            buffer = null;
+            updateDisplay('0');
+            
             return false;
         }
 
@@ -140,7 +137,6 @@ function evaluate() {
         
     updateDisplay(register);
     return true;
-
 }
 
 function negate() {
