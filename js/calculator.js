@@ -69,24 +69,18 @@ function clear() {
 }
 
 function setOpCode(button) {
-    let result = operate(opCode, register, buffer);
+    if (register === null && buffer === null) return;
 
-    if (typeof result !== 'number') {
-        register = null;
-        buffer = null;
-        opCode = null;
-        updateDisplay(result);
-        return;
-    }
-    
-    if (buffer !== null) {
-        register = register !== null ? result : buffer;    
+    if (register !== null && buffer !== null) evaluate();
+
+    if (register === null && buffer !== null) {
+        register = buffer;
         buffer = null;
     }
-    
+
     opCode = button.target.value;
-    
-    updateDisplay(register);
+
+    return opCode;
 }
 
 
@@ -103,11 +97,7 @@ function operate(operator, firstNumber, secondNumber) {
         case 'multiply':
             return multiply(firstNumber, secondNumber);
         case 'divide':
-            if (secondNumber === '0'){
-                return "0ops! You divided by 0 you silly billy!";
-            } else {
-                return divide(firstNumber, secondNumber);
-            }
+            return divide(firstNumber, secondNumber);
     }
 }
 
@@ -128,20 +118,32 @@ function divide(numerator, denominator) {
 }
 
 function evaluate() {
-    if (opCode === null) {
-        if (buffer === null) {
-            updateDisplay('0');
-        } else {
-            updateDisplay(buffer);
-        }
+    if (buffer !== null && register === null) {
+        register = buffer;
+        buffer = null;
+        
+        updateDisplay(register);
+        
         return;
     }
 
-    if (buffer !== null) {
+    if ((buffer === null && register !== null) ||
+        (buffer === null && register === null)) 
+            return;
+
+    if (buffer !== null && register !== null) {
+        if (opCode === 'divide' && Number(buffer) === 0) {
+            clear();
+            clear();
+            updateDisplay("0ops! You divided by 0 you silly billy!");
+            return;
+        }
+
         register = operate(opCode, register, buffer);
         buffer = null;
 
         updateDisplay(register);
+        return;
     }
 }
 
