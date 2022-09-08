@@ -32,6 +32,7 @@ function initiateCalc() {
 
 function changeClearButton() {
     clearButton.textContent = 'C';
+    enableButton(clearButton);
 }
 
 function appendDigit(digit) {
@@ -57,10 +58,22 @@ function updateDisplay(output) {
     display.value = output;
 }
 
+function disableButton(button) {
+    button.disabled = true;
+    button.classList.add("button-disabled");
+}
+
+function enableButton(button) {
+    button.disabled = false;
+    button.classList.remove("button-disabled");
+}
+
 function clear() {
     if (buffer === null) {
         register = null;
         opCode = null;
+
+        disableButton(clearButton);
     }
 
     buffer = null;

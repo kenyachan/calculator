@@ -99,6 +99,11 @@ footer p {
     background-color: slategrey;
 }
 
+.button-disabled {
+    background-color: lightgrey;
+    color: whitesmoke;
+}
+
 #zero-button {
     grid-column-start: 1;
     grid-column-end: span 2;
