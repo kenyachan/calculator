@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -53,6 +54,9 @@ footer p {
     border-radius: 20px;
     box-shadow: 10px 10px 10px lightgrey;
     padding: 1rem;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
 }
 
 #display-container {
@@ -79,39 +83,39 @@ footer p {
 #keypad-container {
     margin: 1rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     gap: 1rem;
 }
 
-.button {
+.calculator .button {
     background-color: grey;
     color: whitesmoke;
     padding: 1rem;
     font-size: 2rem;
     border-radius: 6px;
-    box-shadow: 5px 5px 5px lightgrey;
+    box-shadow: 5px 5px 10px lightgrey;
     border: 0;
 }
 
-.clear-button,
-.negate-button,
-.percent-button {
+.calculator .clear-button,
+.calculator .negate-button,
+.calculator .percent-button {
     background-color: slategrey;
 }
 
-.button-disabled {
+.calculator .button-disabled {
     background-color: lightgrey;
     color: whitesmoke;
 }
 
-#zero-button {
-    grid-column-start: 1;
-    grid-column-end: span 2;
-    width: auto;
+.calculator #zero-button {
+    grid-column: 1 / 3;
+    /* width: auto; */
 }
 
-.operator-button,
-.evaluate-button {
+.calculator .operator-button,
+.calculator .evaluate-button {
     background-color: orange;
 }
 
