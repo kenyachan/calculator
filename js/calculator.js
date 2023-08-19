@@ -1,8 +1,8 @@
 const OPERATORS = ['add', 'subtract', 'multiply', 'divide'];
 
-let buffer = null;
-let register = null;
-let opCode = null;
+let buffer = null;      // input buffer / second operand
+let register = null;    // first operand
+let opCode = null;      // operation to perform
 
 const numberButtons = document.querySelectorAll('.number-button');
 const operatorButtons = document.querySelectorAll('.operator-button');
@@ -30,6 +30,7 @@ function initiateCalc() {
     percentageButton.addEventListener('click', percentage);
 }
 
+// change the clear button from 'AC' to 'C'
 function changeClearButton() {
     clearButton.textContent = 'C';
     enableButton(clearButton);
@@ -67,6 +68,12 @@ function enableButton(button) {
     button.disabled = false;
     button.classList.remove("button-disabled");
 }
+
+/* 
+Pressing the C button will clear the input buffer.
+If the input buffer is empty, the C button will appear as an AC button.
+Pressing the AC button will clear everything.
+*/
 
 function clear() {
     if (buffer === null) {
